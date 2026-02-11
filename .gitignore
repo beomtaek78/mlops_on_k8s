@@ -1,0 +1,7 @@
+.ansible/
+.cache/
+.config/
+.docker/
+.kube/
+.ssh/
+snap/
