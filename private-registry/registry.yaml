@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubeflow-registry
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kubeflow-registry
+  template:
+    metadata:
+      labels:
+        app: kubeflow-registry
+    spec:
+      containers:
+      - name: registry
+        image: registry:2
+        ports:
+        - containerPort: 5000
+        env:
+        # 이미지 삭제 허용 (UI 사용 시 필요)
+        - name: REGISTRY_STORAGE_DELETE_ENABLED
+          value: "true"
+
+        # CORS 허용 (브라우저 접근 대비)
+        - name: REGISTRY_HTTP_HEADERS_Access-Control-Allow-Origin
+          value: '["*"]'
+        - name: REGISTRY_HTTP_HEADERS_Access-Control-Allow-Methods
+          value: '["HEAD", "GET", "OPTIONS", "DELETE"]'
+        - name: REGISTRY_HTTP_HEADERS_Access-Control-Allow-Headers
+          value: '["Authorization", "Accept", "Cache-Control"]'
+
+        volumeMounts:
+        - name: registry-storage
+          mountPath: /var/lib/registry
+
+      volumes:
+      - name: registry-storage
+        persistentVolumeClaim:
+          claimName: kubeflow-registry-pvc
+

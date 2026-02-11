@@ -15,9 +15,9 @@
 
 # Command Line History (newest to oldest):
 :wq
-|2,0,1770775500,,"wq"
+|2,0,1770777493,,"wq"
 :q!
-|2,0,1770182829,,"q!"
+|2,0,1770776114,,"q!"
 :wq!
 |2,0,1769920066,,"wq!"
 
@@ -40,232 +40,367 @@
 # Debug Line History (newest to oldest):
 
 # Registers:
+""1	LINE	0
+	apiVersion: apps/v1
+	kind: Deployment
+	metadata:
+	  name: kubeflow-registry
+	  namespace: default
+	spec:
+	  replicas: 1
+	  selector:
+	    matchLabels:
+	      app: kubeflow-registry
+	  template:
+	    metadata:
+	      labels:
+	        app: kubeflow-registry
+	    spec:
+	      containers:
+	      - name: registry
+	        image: registry:2
+	        ports:
+	        - containerPort: 5000
+	        volumeMounts:
+	        - name: registry-storage
+	          mountPath: /var/lib/registry
+	      volumes:
+	      - name: registry-storage
+	        persistentVolumeClaim:
+	          claimName: kubeflow-registry-pvc
+	      env:
+	      - name: REGISTRY_STORAGE_DELETE_ENABLED
+	
+|3,1,1,1,30,0,1770777480,"apiVersion: apps/v1","kind: Deployment","metadata:","  name: kubeflow-registry","  namespace: default","spec:","  replicas: 1","  selector:","    matchLabels:","      app: kubeflow-registry","  template:","    metadata:","      labels:","        app: kubeflow-registry","    spec:","      containers:","      - name: registry","        image: registry:2","        ports:","        - containerPort: 5000","        volumeMounts:",>34
+|<"        - name: registry-storage","          mountPath: /var/lib/registry","      volumes:","      - name: registry-storage","        persistentVolumeClaim:","          claimName: kubeflow-registry-pvc","      env:","      - name: REGISTRY_STORAGE_DELETE_ENABLED",""
+"2	LINE	0
+	        value: "true"
+|3,0,2,1,1,0,1770777477,"        value: \"true\""
+"3	LINE	0
+	apiVersion: apps/v1
+	kind: Deployment
+	metadata:
+	  name: kubeflow-registry-ui
+	  namespace: default
+	spec:
+	  replicas: 1
+	  selector:
+	    matchLabels:
+	      app: kubeflow-registry-ui
+	  template:
+	    metadata:
+	      labels:
+	        app: kubeflow-registry-ui
+	    spec:
+	      containers:
+	      - name: registry-ui
+	        image: joxit/docker-registry-ui:latest
+	        ports:
+	        - containerPort: 80
+	        env:
+	        - name: REGISTRY_TITLE
+	          value: "Kubeflow Private Registry"
+	        - name: REGISTRY_URL
+	          value: "http://kubeflow-registry.default.svc.cluster.local:30000"
+	        - name: DELETE_IMAGES
+	          value: "true"
+	
+	---
+	apiVersion: v1
+	kind: Service
+	metadata:
+	  name: kubeflow-registry-ui
+	  namespace: default
+	spec:
+	  type: LoadBalancer
+	  selector:
+	    app: kubeflow-registry-ui
+	  ports:
+	  - port: 80
+	    targetPort: 80
+	
+|3,0,3,1,42,0,1770777309,"apiVersion: apps/v1","kind: Deployment","metadata:","  name: kubeflow-registry-ui","  namespace: default","spec:","  replicas: 1","  selector:","    matchLabels:","      app: kubeflow-registry-ui","  template:","    metadata:","      labels:","        app: kubeflow-registry-ui","    spec:","      containers:","      - name: registry-ui","        image: joxit/docker-registry-ui:latest","        ports:","        - containerPort: 80",>14
+|<"        env:","        - name: REGISTRY_TITLE","          value: \"Kubeflow Private Registry\"","        - name: REGISTRY_URL","          value: \"http://kubeflow-registry.default.svc.cluster.local:30000\"","        - name: DELETE_IMAGES","          value: \"true\"","","---","apiVersion: v1","kind: Service","metadata:","  name: kubeflow-registry-ui","  namespace: default","spec:","  type: LoadBalancer","  selector:","    app: kubeflow-registry-ui","  ports:","  - port: 80",>20
+|<"    targetPort: 80",""
 
 # File marks:
-'0  7  4  ~/.gitignore
-|4,48,7,4,1770775500,"~/.gitignore"
-'1  48  19  /tmp/kubectl-edit-872372977.yaml
-|4,49,48,19,1770621694,"/tmp/kubectl-edit-872372977.yaml"
-'2  84  57  /tmp/kubectl-edit-1113521411.yaml
-|4,50,84,57,1770618159,"/tmp/kubectl-edit-1113521411.yaml"
-'3  84  47  /tmp/kubectl-edit-3883066494.yaml
-|4,51,84,47,1770618029,"/tmp/kubectl-edit-3883066494.yaml"
-'4  84  49  /tmp/kubectl-edit-299932753.yaml
-|4,52,84,49,1770617935,"/tmp/kubectl-edit-299932753.yaml"
-'5  84  53  /tmp/kubectl-edit-290216124.yaml
-|4,53,84,53,1770616793,"/tmp/kubectl-edit-290216124.yaml"
-'6  11  1657  /tmp/kubectl-edit-144249442.yaml
-|4,54,11,1657,1770616582,"/tmp/kubectl-edit-144249442.yaml"
-'7  84  56  /tmp/kubectl-edit-1733030230.yaml
-|4,55,84,56,1770616437,"/tmp/kubectl-edit-1733030230.yaml"
-'8  84  52  /tmp/kubectl-edit-1574795220.yaml
-|4,56,84,52,1770616337,"/tmp/kubectl-edit-1574795220.yaml"
-'9  84  54  /tmp/kubectl-edit-2228700208.yaml
-|4,57,84,54,1770616197,"/tmp/kubectl-edit-2228700208.yaml"
+'0  42  0  ~/private-registry/registry.yaml
+|4,48,42,0,1770777493,"~/private-registry/registry.yaml"
+'1  1  5  ~/private-registry/registry.yaml
+|4,49,1,5,1770777436,"~/private-registry/registry.yaml"
+'2  30  5  ~/private-registry/registry.yaml
+|4,50,30,5,1770777436,"~/private-registry/registry.yaml"
+'3  43  0  ~/private-registry/registry-ui.yaml
+|4,51,43,0,1770777317,"~/private-registry/registry-ui.yaml"
+'4  1  73  ~/private-registry/registry-ui.yaml
+|4,52,1,73,1770776971,"~/private-registry/registry-ui.yaml"
+'5  25  73  ~/private-registry/registry-ui.yaml
+|4,53,25,73,1770776971,"~/private-registry/registry-ui.yaml"
+'6  15  73  /etc/hosts
+|4,54,15,73,1770776827,"/etc/hosts"
+'7  15  55  /etc/hosts
+|4,55,15,55,1770776772,"/etc/hosts"
+'8  2  78  /etc/docker/daemon.json
+|4,56,2,78,1770776632,"/etc/docker/daemon.json"
+'9  1  0  ~/private-registry/registry-ui.yaml
+|4,57,1,0,1770776310,"~/private-registry/registry-ui.yaml"
 
 # Jumplist (newest first):
--'  7  4  ~/.gitignore
-|4,39,7,4,1770775500,"~/.gitignore"
--'  1  0  ~/.gitignore
-|4,39,1,0,1770775486,"~/.gitignore"
--'  48  19  /tmp/kubectl-edit-872372977.yaml
-|4,39,48,19,1770621694,"/tmp/kubectl-edit-872372977.yaml"
--'  48  19  /tmp/kubectl-edit-872372977.yaml
-|4,39,48,19,1770621694,"/tmp/kubectl-edit-872372977.yaml"
--'  10  622  /tmp/kubectl-edit-872372977.yaml
-|4,39,10,622,1770621645,"/tmp/kubectl-edit-872372977.yaml"
--'  10  622  /tmp/kubectl-edit-872372977.yaml
-|4,39,10,622,1770621645,"/tmp/kubectl-edit-872372977.yaml"
--'  1  0  /tmp/kubectl-edit-872372977.yaml
-|4,39,1,0,1770621643,"/tmp/kubectl-edit-872372977.yaml"
--'  1  0  /tmp/kubectl-edit-872372977.yaml
-|4,39,1,0,1770621643,"/tmp/kubectl-edit-872372977.yaml"
--'  84  57  /tmp/kubectl-edit-1113521411.yaml
-|4,39,84,57,1770618159,"/tmp/kubectl-edit-1113521411.yaml"
--'  84  57  /tmp/kubectl-edit-1113521411.yaml
-|4,39,84,57,1770618159,"/tmp/kubectl-edit-1113521411.yaml"
--'  84  57  /tmp/kubectl-edit-1113521411.yaml
-|4,39,84,57,1770618159,"/tmp/kubectl-edit-1113521411.yaml"
--'  84  57  /tmp/kubectl-edit-1113521411.yaml
-|4,39,84,57,1770618159,"/tmp/kubectl-edit-1113521411.yaml"
--'  11  1669  /tmp/kubectl-edit-1113521411.yaml
-|4,39,11,1669,1770618146,"/tmp/kubectl-edit-1113521411.yaml"
--'  11  1669  /tmp/kubectl-edit-1113521411.yaml
-|4,39,11,1669,1770618146,"/tmp/kubectl-edit-1113521411.yaml"
--'  11  1669  /tmp/kubectl-edit-1113521411.yaml
-|4,39,11,1669,1770618146,"/tmp/kubectl-edit-1113521411.yaml"
--'  11  1669  /tmp/kubectl-edit-1113521411.yaml
-|4,39,11,1669,1770618146,"/tmp/kubectl-edit-1113521411.yaml"
--'  2  2  /tmp/kubectl-edit-1113521411.yaml
-|4,39,2,2,1770618123,"/tmp/kubectl-edit-1113521411.yaml"
--'  2  2  /tmp/kubectl-edit-1113521411.yaml
-|4,39,2,2,1770618123,"/tmp/kubectl-edit-1113521411.yaml"
--'  2  2  /tmp/kubectl-edit-1113521411.yaml
-|4,39,2,2,1770618123,"/tmp/kubectl-edit-1113521411.yaml"
--'  2  2  /tmp/kubectl-edit-1113521411.yaml
-|4,39,2,2,1770618123,"/tmp/kubectl-edit-1113521411.yaml"
--'  1  0  /tmp/kubectl-edit-1113521411.yaml
-|4,39,1,0,1770618105,"/tmp/kubectl-edit-1113521411.yaml"
--'  1  0  /tmp/kubectl-edit-1113521411.yaml
-|4,39,1,0,1770618105,"/tmp/kubectl-edit-1113521411.yaml"
--'  1  0  /tmp/kubectl-edit-1113521411.yaml
-|4,39,1,0,1770618105,"/tmp/kubectl-edit-1113521411.yaml"
--'  1  0  /tmp/kubectl-edit-1113521411.yaml
-|4,39,1,0,1770618105,"/tmp/kubectl-edit-1113521411.yaml"
--'  84  47  /tmp/kubectl-edit-3883066494.yaml
-|4,39,84,47,1770618029,"/tmp/kubectl-edit-3883066494.yaml"
--'  84  47  /tmp/kubectl-edit-3883066494.yaml
-|4,39,84,47,1770618029,"/tmp/kubectl-edit-3883066494.yaml"
--'  84  47  /tmp/kubectl-edit-3883066494.yaml
-|4,39,84,47,1770618029,"/tmp/kubectl-edit-3883066494.yaml"
--'  84  47  /tmp/kubectl-edit-3883066494.yaml
-|4,39,84,47,1770618029,"/tmp/kubectl-edit-3883066494.yaml"
--'  84  47  /tmp/kubectl-edit-3883066494.yaml
-|4,39,84,47,1770618029,"/tmp/kubectl-edit-3883066494.yaml"
--'  84  47  /tmp/kubectl-edit-3883066494.yaml
-|4,39,84,47,1770618029,"/tmp/kubectl-edit-3883066494.yaml"
--'  84  47  /tmp/kubectl-edit-3883066494.yaml
-|4,39,84,47,1770618029,"/tmp/kubectl-edit-3883066494.yaml"
--'  84  47  /tmp/kubectl-edit-3883066494.yaml
-|4,39,84,47,1770618029,"/tmp/kubectl-edit-3883066494.yaml"
--'  11  1661  /tmp/kubectl-edit-3883066494.yaml
-|4,39,11,1661,1770618021,"/tmp/kubectl-edit-3883066494.yaml"
--'  11  1661  /tmp/kubectl-edit-3883066494.yaml
-|4,39,11,1661,1770618021,"/tmp/kubectl-edit-3883066494.yaml"
--'  11  1661  /tmp/kubectl-edit-3883066494.yaml
-|4,39,11,1661,1770618021,"/tmp/kubectl-edit-3883066494.yaml"
--'  11  1661  /tmp/kubectl-edit-3883066494.yaml
-|4,39,11,1661,1770618021,"/tmp/kubectl-edit-3883066494.yaml"
--'  11  1661  /tmp/kubectl-edit-3883066494.yaml
-|4,39,11,1661,1770618021,"/tmp/kubectl-edit-3883066494.yaml"
--'  11  1661  /tmp/kubectl-edit-3883066494.yaml
-|4,39,11,1661,1770618021,"/tmp/kubectl-edit-3883066494.yaml"
--'  11  1661  /tmp/kubectl-edit-3883066494.yaml
-|4,39,11,1661,1770618021,"/tmp/kubectl-edit-3883066494.yaml"
--'  11  1661  /tmp/kubectl-edit-3883066494.yaml
-|4,39,11,1661,1770618021,"/tmp/kubectl-edit-3883066494.yaml"
--'  1  0  /tmp/kubectl-edit-3883066494.yaml
-|4,39,1,0,1770618009,"/tmp/kubectl-edit-3883066494.yaml"
--'  1  0  /tmp/kubectl-edit-3883066494.yaml
-|4,39,1,0,1770618009,"/tmp/kubectl-edit-3883066494.yaml"
--'  1  0  /tmp/kubectl-edit-3883066494.yaml
-|4,39,1,0,1770618009,"/tmp/kubectl-edit-3883066494.yaml"
--'  1  0  /tmp/kubectl-edit-3883066494.yaml
-|4,39,1,0,1770618009,"/tmp/kubectl-edit-3883066494.yaml"
--'  1  0  /tmp/kubectl-edit-3883066494.yaml
-|4,39,1,0,1770618009,"/tmp/kubectl-edit-3883066494.yaml"
--'  1  0  /tmp/kubectl-edit-3883066494.yaml
-|4,39,1,0,1770618009,"/tmp/kubectl-edit-3883066494.yaml"
--'  1  0  /tmp/kubectl-edit-3883066494.yaml
-|4,39,1,0,1770618009,"/tmp/kubectl-edit-3883066494.yaml"
--'  1  0  /tmp/kubectl-edit-3883066494.yaml
-|4,39,1,0,1770618009,"/tmp/kubectl-edit-3883066494.yaml"
--'  84  49  /tmp/kubectl-edit-299932753.yaml
-|4,39,84,49,1770617935,"/tmp/kubectl-edit-299932753.yaml"
--'  84  49  /tmp/kubectl-edit-299932753.yaml
-|4,39,84,49,1770617935,"/tmp/kubectl-edit-299932753.yaml"
--'  84  49  /tmp/kubectl-edit-299932753.yaml
-|4,39,84,49,1770617935,"/tmp/kubectl-edit-299932753.yaml"
--'  84  49  /tmp/kubectl-edit-299932753.yaml
-|4,39,84,49,1770617935,"/tmp/kubectl-edit-299932753.yaml"
--'  84  49  /tmp/kubectl-edit-299932753.yaml
-|4,39,84,49,1770617935,"/tmp/kubectl-edit-299932753.yaml"
--'  84  49  /tmp/kubectl-edit-299932753.yaml
-|4,39,84,49,1770617935,"/tmp/kubectl-edit-299932753.yaml"
--'  84  49  /tmp/kubectl-edit-299932753.yaml
-|4,39,84,49,1770617935,"/tmp/kubectl-edit-299932753.yaml"
--'  84  49  /tmp/kubectl-edit-299932753.yaml
-|4,39,84,49,1770617935,"/tmp/kubectl-edit-299932753.yaml"
--'  84  49  /tmp/kubectl-edit-299932753.yaml
-|4,39,84,49,1770617935,"/tmp/kubectl-edit-299932753.yaml"
--'  84  49  /tmp/kubectl-edit-299932753.yaml
-|4,39,84,49,1770617935,"/tmp/kubectl-edit-299932753.yaml"
--'  84  49  /tmp/kubectl-edit-299932753.yaml
-|4,39,84,49,1770617935,"/tmp/kubectl-edit-299932753.yaml"
--'  84  49  /tmp/kubectl-edit-299932753.yaml
-|4,39,84,49,1770617935,"/tmp/kubectl-edit-299932753.yaml"
--'  84  49  /tmp/kubectl-edit-299932753.yaml
-|4,39,84,49,1770617935,"/tmp/kubectl-edit-299932753.yaml"
--'  84  49  /tmp/kubectl-edit-299932753.yaml
-|4,39,84,49,1770617935,"/tmp/kubectl-edit-299932753.yaml"
--'  84  49  /tmp/kubectl-edit-299932753.yaml
-|4,39,84,49,1770617935,"/tmp/kubectl-edit-299932753.yaml"
--'  84  49  /tmp/kubectl-edit-299932753.yaml
-|4,39,84,49,1770617935,"/tmp/kubectl-edit-299932753.yaml"
--'  11  1661  /tmp/kubectl-edit-299932753.yaml
-|4,39,11,1661,1770617920,"/tmp/kubectl-edit-299932753.yaml"
--'  11  1661  /tmp/kubectl-edit-299932753.yaml
-|4,39,11,1661,1770617920,"/tmp/kubectl-edit-299932753.yaml"
--'  11  1661  /tmp/kubectl-edit-299932753.yaml
-|4,39,11,1661,1770617920,"/tmp/kubectl-edit-299932753.yaml"
--'  11  1661  /tmp/kubectl-edit-299932753.yaml
-|4,39,11,1661,1770617920,"/tmp/kubectl-edit-299932753.yaml"
--'  11  1661  /tmp/kubectl-edit-299932753.yaml
-|4,39,11,1661,1770617920,"/tmp/kubectl-edit-299932753.yaml"
--'  11  1661  /tmp/kubectl-edit-299932753.yaml
-|4,39,11,1661,1770617920,"/tmp/kubectl-edit-299932753.yaml"
--'  11  1661  /tmp/kubectl-edit-299932753.yaml
-|4,39,11,1661,1770617920,"/tmp/kubectl-edit-299932753.yaml"
--'  11  1661  /tmp/kubectl-edit-299932753.yaml
-|4,39,11,1661,1770617920,"/tmp/kubectl-edit-299932753.yaml"
--'  11  1661  /tmp/kubectl-edit-299932753.yaml
-|4,39,11,1661,1770617920,"/tmp/kubectl-edit-299932753.yaml"
--'  11  1661  /tmp/kubectl-edit-299932753.yaml
-|4,39,11,1661,1770617920,"/tmp/kubectl-edit-299932753.yaml"
--'  11  1661  /tmp/kubectl-edit-299932753.yaml
-|4,39,11,1661,1770617920,"/tmp/kubectl-edit-299932753.yaml"
--'  11  1661  /tmp/kubectl-edit-299932753.yaml
-|4,39,11,1661,1770617920,"/tmp/kubectl-edit-299932753.yaml"
--'  11  1661  /tmp/kubectl-edit-299932753.yaml
-|4,39,11,1661,1770617920,"/tmp/kubectl-edit-299932753.yaml"
--'  11  1661  /tmp/kubectl-edit-299932753.yaml
-|4,39,11,1661,1770617920,"/tmp/kubectl-edit-299932753.yaml"
--'  11  1661  /tmp/kubectl-edit-299932753.yaml
-|4,39,11,1661,1770617920,"/tmp/kubectl-edit-299932753.yaml"
--'  11  1661  /tmp/kubectl-edit-299932753.yaml
-|4,39,11,1661,1770617920,"/tmp/kubectl-edit-299932753.yaml"
--'  85  8  /tmp/kubectl-edit-299932753.yaml
-|4,39,85,8,1770617882,"/tmp/kubectl-edit-299932753.yaml"
--'  85  8  /tmp/kubectl-edit-299932753.yaml
-|4,39,85,8,1770617882,"/tmp/kubectl-edit-299932753.yaml"
--'  85  8  /tmp/kubectl-edit-299932753.yaml
-|4,39,85,8,1770617882,"/tmp/kubectl-edit-299932753.yaml"
--'  85  8  /tmp/kubectl-edit-299932753.yaml
-|4,39,85,8,1770617882,"/tmp/kubectl-edit-299932753.yaml"
--'  85  8  /tmp/kubectl-edit-299932753.yaml
-|4,39,85,8,1770617882,"/tmp/kubectl-edit-299932753.yaml"
--'  85  8  /tmp/kubectl-edit-299932753.yaml
-|4,39,85,8,1770617882,"/tmp/kubectl-edit-299932753.yaml"
--'  85  8  /tmp/kubectl-edit-299932753.yaml
-|4,39,85,8,1770617882,"/tmp/kubectl-edit-299932753.yaml"
--'  85  8  /tmp/kubectl-edit-299932753.yaml
-|4,39,85,8,1770617882,"/tmp/kubectl-edit-299932753.yaml"
--'  85  8  /tmp/kubectl-edit-299932753.yaml
-|4,39,85,8,1770617882,"/tmp/kubectl-edit-299932753.yaml"
--'  85  8  /tmp/kubectl-edit-299932753.yaml
-|4,39,85,8,1770617882,"/tmp/kubectl-edit-299932753.yaml"
--'  85  8  /tmp/kubectl-edit-299932753.yaml
-|4,39,85,8,1770617882,"/tmp/kubectl-edit-299932753.yaml"
--'  85  8  /tmp/kubectl-edit-299932753.yaml
-|4,39,85,8,1770617882,"/tmp/kubectl-edit-299932753.yaml"
--'  85  8  /tmp/kubectl-edit-299932753.yaml
-|4,39,85,8,1770617882,"/tmp/kubectl-edit-299932753.yaml"
--'  85  8  /tmp/kubectl-edit-299932753.yaml
-|4,39,85,8,1770617882,"/tmp/kubectl-edit-299932753.yaml"
--'  85  8  /tmp/kubectl-edit-299932753.yaml
-|4,39,85,8,1770617882,"/tmp/kubectl-edit-299932753.yaml"
--'  85  8  /tmp/kubectl-edit-299932753.yaml
-|4,39,85,8,1770617882,"/tmp/kubectl-edit-299932753.yaml"
--'  1  0  /tmp/kubectl-edit-299932753.yaml
-|4,39,1,0,1770617872,"/tmp/kubectl-edit-299932753.yaml"
--'  1  0  /tmp/kubectl-edit-299932753.yaml
-|4,39,1,0,1770617872,"/tmp/kubectl-edit-299932753.yaml"
--'  1  0  /tmp/kubectl-edit-299932753.yaml
-|4,39,1,0,1770617872,"/tmp/kubectl-edit-299932753.yaml"
--'  1  0  /tmp/kubectl-edit-299932753.yaml
-|4,39,1,0,1770617872,"/tmp/kubectl-edit-299932753.yaml"
+-'  42  0  ~/private-registry/registry.yaml
+|4,39,42,0,1770777493,"~/private-registry/registry.yaml"
+-'  1  0  ~/private-registry/registry.yaml
+|4,39,1,0,1770777480,"~/private-registry/registry.yaml"
+-'  30  5  ~/private-registry/registry.yaml
+|4,39,30,5,1770777436,"~/private-registry/registry.yaml"
+-'  28  0  ~/private-registry/registry.yaml
+|4,39,28,0,1770777407,"~/private-registry/registry.yaml"
+-'  43  0  ~/private-registry/registry-ui.yaml
+|4,39,43,0,1770777317,"~/private-registry/registry-ui.yaml"
+-'  43  0  ~/private-registry/registry-ui.yaml
+|4,39,43,0,1770777317,"~/private-registry/registry-ui.yaml"
+-'  43  0  ~/private-registry/registry-ui.yaml
+|4,39,43,0,1770777317,"~/private-registry/registry-ui.yaml"
+-'  43  0  ~/private-registry/registry-ui.yaml
+|4,39,43,0,1770777317,"~/private-registry/registry-ui.yaml"
+-'  1  18  ~/private-registry/registry-ui.yaml
+|4,39,1,18,1770777309,"~/private-registry/registry-ui.yaml"
+-'  1  18  ~/private-registry/registry-ui.yaml
+|4,39,1,18,1770777309,"~/private-registry/registry-ui.yaml"
+-'  1  18  ~/private-registry/registry-ui.yaml
+|4,39,1,18,1770777309,"~/private-registry/registry-ui.yaml"
+-'  1  18  ~/private-registry/registry-ui.yaml
+|4,39,1,18,1770777309,"~/private-registry/registry-ui.yaml"
+-'  25  73  ~/private-registry/registry-ui.yaml
+|4,39,25,73,1770776971,"~/private-registry/registry-ui.yaml"
+-'  25  73  ~/private-registry/registry-ui.yaml
+|4,39,25,73,1770776971,"~/private-registry/registry-ui.yaml"
+-'  25  73  ~/private-registry/registry-ui.yaml
+|4,39,25,73,1770776971,"~/private-registry/registry-ui.yaml"
+-'  25  73  ~/private-registry/registry-ui.yaml
+|4,39,25,73,1770776971,"~/private-registry/registry-ui.yaml"
+-'  42  0  ~/private-registry/registry-ui.yaml
+|4,39,42,0,1770776894,"~/private-registry/registry-ui.yaml"
+-'  42  0  ~/private-registry/registry-ui.yaml
+|4,39,42,0,1770776894,"~/private-registry/registry-ui.yaml"
+-'  42  0  ~/private-registry/registry-ui.yaml
+|4,39,42,0,1770776894,"~/private-registry/registry-ui.yaml"
+-'  42  0  ~/private-registry/registry-ui.yaml
+|4,39,42,0,1770776894,"~/private-registry/registry-ui.yaml"
+-'  15  73  /etc/hosts
+|4,39,15,73,1770776827,"/etc/hosts"
+-'  15  73  /etc/hosts
+|4,39,15,73,1770776827,"/etc/hosts"
+-'  15  73  /etc/hosts
+|4,39,15,73,1770776827,"/etc/hosts"
+-'  15  73  /etc/hosts
+|4,39,15,73,1770776827,"/etc/hosts"
+-'  15  73  /etc/hosts
+|4,39,15,73,1770776827,"/etc/hosts"
+-'  15  73  /etc/hosts
+|4,39,15,73,1770776827,"/etc/hosts"
+-'  15  73  /etc/hosts
+|4,39,15,73,1770776827,"/etc/hosts"
+-'  15  73  /etc/hosts
+|4,39,15,73,1770776827,"/etc/hosts"
+-'  15  73  /etc/hosts
+|4,39,15,73,1770776827,"/etc/hosts"
+-'  15  73  /etc/hosts
+|4,39,15,73,1770776827,"/etc/hosts"
+-'  15  73  /etc/hosts
+|4,39,15,73,1770776827,"/etc/hosts"
+-'  15  73  /etc/hosts
+|4,39,15,73,1770776827,"/etc/hosts"
+-'  15  73  /etc/hosts
+|4,39,15,73,1770776827,"/etc/hosts"
+-'  15  73  /etc/hosts
+|4,39,15,73,1770776827,"/etc/hosts"
+-'  15  73  /etc/hosts
+|4,39,15,73,1770776827,"/etc/hosts"
+-'  15  73  /etc/hosts
+|4,39,15,73,1770776827,"/etc/hosts"
+-'  15  55  /etc/hosts
+|4,39,15,55,1770776772,"/etc/hosts"
+-'  15  55  /etc/hosts
+|4,39,15,55,1770776772,"/etc/hosts"
+-'  15  55  /etc/hosts
+|4,39,15,55,1770776772,"/etc/hosts"
+-'  15  55  /etc/hosts
+|4,39,15,55,1770776772,"/etc/hosts"
+-'  15  55  /etc/hosts
+|4,39,15,55,1770776772,"/etc/hosts"
+-'  15  55  /etc/hosts
+|4,39,15,55,1770776772,"/etc/hosts"
+-'  15  55  /etc/hosts
+|4,39,15,55,1770776772,"/etc/hosts"
+-'  15  55  /etc/hosts
+|4,39,15,55,1770776772,"/etc/hosts"
+-'  15  55  /etc/hosts
+|4,39,15,55,1770776772,"/etc/hosts"
+-'  15  55  /etc/hosts
+|4,39,15,55,1770776772,"/etc/hosts"
+-'  15  55  /etc/hosts
+|4,39,15,55,1770776772,"/etc/hosts"
+-'  15  55  /etc/hosts
+|4,39,15,55,1770776772,"/etc/hosts"
+-'  15  55  /etc/hosts
+|4,39,15,55,1770776772,"/etc/hosts"
+-'  15  55  /etc/hosts
+|4,39,15,55,1770776772,"/etc/hosts"
+-'  15  55  /etc/hosts
+|4,39,15,55,1770776772,"/etc/hosts"
+-'  15  55  /etc/hosts
+|4,39,15,55,1770776772,"/etc/hosts"
+-'  14  0  /etc/hosts
+|4,39,14,0,1770776761,"/etc/hosts"
+-'  14  0  /etc/hosts
+|4,39,14,0,1770776761,"/etc/hosts"
+-'  14  0  /etc/hosts
+|4,39,14,0,1770776761,"/etc/hosts"
+-'  14  0  /etc/hosts
+|4,39,14,0,1770776761,"/etc/hosts"
+-'  14  0  /etc/hosts
+|4,39,14,0,1770776761,"/etc/hosts"
+-'  14  0  /etc/hosts
+|4,39,14,0,1770776761,"/etc/hosts"
+-'  14  0  /etc/hosts
+|4,39,14,0,1770776761,"/etc/hosts"
+-'  14  0  /etc/hosts
+|4,39,14,0,1770776761,"/etc/hosts"
+-'  14  0  /etc/hosts
+|4,39,14,0,1770776761,"/etc/hosts"
+-'  14  0  /etc/hosts
+|4,39,14,0,1770776761,"/etc/hosts"
+-'  14  0  /etc/hosts
+|4,39,14,0,1770776761,"/etc/hosts"
+-'  14  0  /etc/hosts
+|4,39,14,0,1770776761,"/etc/hosts"
+-'  14  0  /etc/hosts
+|4,39,14,0,1770776761,"/etc/hosts"
+-'  14  0  /etc/hosts
+|4,39,14,0,1770776761,"/etc/hosts"
+-'  14  0  /etc/hosts
+|4,39,14,0,1770776761,"/etc/hosts"
+-'  14  0  /etc/hosts
+|4,39,14,0,1770776761,"/etc/hosts"
+-'  14  0  /etc/hosts
+|4,39,14,0,1770776761,"/etc/hosts"
+-'  14  0  /etc/hosts
+|4,39,14,0,1770776761,"/etc/hosts"
+-'  14  0  /etc/hosts
+|4,39,14,0,1770776761,"/etc/hosts"
+-'  14  0  /etc/hosts
+|4,39,14,0,1770776761,"/etc/hosts"
+-'  14  0  /etc/hosts
+|4,39,14,0,1770776761,"/etc/hosts"
+-'  14  0  /etc/hosts
+|4,39,14,0,1770776761,"/etc/hosts"
+-'  14  0  /etc/hosts
+|4,39,14,0,1770776761,"/etc/hosts"
+-'  14  0  /etc/hosts
+|4,39,14,0,1770776761,"/etc/hosts"
+-'  14  0  /etc/hosts
+|4,39,14,0,1770776761,"/etc/hosts"
+-'  14  0  /etc/hosts
+|4,39,14,0,1770776761,"/etc/hosts"
+-'  14  0  /etc/hosts
+|4,39,14,0,1770776761,"/etc/hosts"
+-'  14  0  /etc/hosts
+|4,39,14,0,1770776761,"/etc/hosts"
+-'  14  0  /etc/hosts
+|4,39,14,0,1770776761,"/etc/hosts"
+-'  14  0  /etc/hosts
+|4,39,14,0,1770776761,"/etc/hosts"
+-'  14  0  /etc/hosts
+|4,39,14,0,1770776761,"/etc/hosts"
+-'  14  0  /etc/hosts
+|4,39,14,0,1770776761,"/etc/hosts"
+-'  2  78  /etc/docker/daemon.json
+|4,39,2,78,1770776632,"/etc/docker/daemon.json"
+-'  2  78  /etc/docker/daemon.json
+|4,39,2,78,1770776632,"/etc/docker/daemon.json"
+-'  2  78  /etc/docker/daemon.json
+|4,39,2,78,1770776632,"/etc/docker/daemon.json"
+-'  2  78  /etc/docker/daemon.json
+|4,39,2,78,1770776632,"/etc/docker/daemon.json"
+-'  2  78  /etc/docker/daemon.json
+|4,39,2,78,1770776632,"/etc/docker/daemon.json"
+-'  2  78  /etc/docker/daemon.json
+|4,39,2,78,1770776632,"/etc/docker/daemon.json"
+-'  2  78  /etc/docker/daemon.json
+|4,39,2,78,1770776632,"/etc/docker/daemon.json"
+-'  2  78  /etc/docker/daemon.json
+|4,39,2,78,1770776632,"/etc/docker/daemon.json"
+-'  2  78  /etc/docker/daemon.json
+|4,39,2,78,1770776632,"/etc/docker/daemon.json"
+-'  2  78  /etc/docker/daemon.json
+|4,39,2,78,1770776632,"/etc/docker/daemon.json"
+-'  2  78  /etc/docker/daemon.json
+|4,39,2,78,1770776632,"/etc/docker/daemon.json"
+-'  2  78  /etc/docker/daemon.json
+|4,39,2,78,1770776632,"/etc/docker/daemon.json"
+-'  2  78  /etc/docker/daemon.json
+|4,39,2,78,1770776632,"/etc/docker/daemon.json"
+-'  2  78  /etc/docker/daemon.json
+|4,39,2,78,1770776632,"/etc/docker/daemon.json"
+-'  2  78  /etc/docker/daemon.json
+|4,39,2,78,1770776632,"/etc/docker/daemon.json"
+-'  2  78  /etc/docker/daemon.json
+|4,39,2,78,1770776632,"/etc/docker/daemon.json"
 
 # History of marks within files (newest to oldest):
+
+> ~/private-registry/registry.yaml
+	*	1770777489	0
+	"	42	0
+	^	42	0
+	.	41	42
+	+	66	20
+	+	1	42
+	+	1	15
+	+	1	5
+	+	1	19
+	+	41	42
+
+> ~/private-registry/registry-ui.yaml
+	*	1770777314	0
+	"	43	0
+	^	43	0
+	.	42	18
+	+	1	23
+	+	1	18
+	+	1	19
+	+	42	18
+
+> /etc/hosts
+	*	1770776825	0
+	"	15	73
+	^	15	74
+	.	15	73
+	+	13	19
+	+	15	73
+
+> /etc/docker/daemon.json
+	*	1770776630	0
+	"	2	78
+	^	2	79
+	.	2	78
+	+	3	0
+	+	2	78
+
+> ~/private-registry/registry-service.yaml
+	*	1770776122	0
+	"	15	0
+	^	15	0
+	.	14	17
+	+	27	17
+	+	14	17
+
+> ~/private-registry/registry-pvc.yaml
+	*	1770775971	0
+	"	13	0
+	^	13	0
+	.	12	19
+	+	12	19
 
 > ~/.gitignore
 	*	1770775499	0
@@ -462,13 +597,6 @@
 	.	10	0
 	+	11	0
 	+	10	0
-
-> /etc/hosts
-	*	1770182774	0
-	"	14	0
-	^	14	0
-	.	13	19
-	+	13	19
 
 > ~/.ssh/authorized_keys
 	*	1769920551	0

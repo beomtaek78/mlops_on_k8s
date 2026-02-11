@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubeflow-registry-ui
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kubeflow-registry-ui
+  template:
+    metadata:
+      labels:
+        app: kubeflow-registry-ui
+    spec:
+      containers:
+      - name: registry-ui
+        image: joxit/docker-registry-ui:latest
+        ports:
+        - containerPort: 80
+        env:
+        - name: REGISTRY_TITLE
+          value: "Kubeflow Private Registry"
+        - name: NGINX_PROXY_PASS_URL
+          value: "http://kubeflow-registry:30000"
+        - name: DELETE_IMAGES
+          value: "true"
+        - name: SINGLE_REGISTRY
+          value: "true"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kubeflow-registry-ui
+  namespace: default
+spec:
+  type: LoadBalancer
+  selector:
+    app: kubeflow-registry-ui
+  ports:
+  - port: 80
+    targetPort: 80
+
