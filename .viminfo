@@ -14,6 +14,8 @@
 ~MSle0~/type
 
 # Command Line History (newest to oldest):
+:q
+|2,0,1770777845,,"q"
 :wq
 |2,0,1770777493,,"wq"
 :q!
@@ -124,34 +126,46 @@
 |<"    targetPort: 80",""
 
 # File marks:
-'0  42  0  ~/private-registry/registry.yaml
-|4,48,42,0,1770777493,"~/private-registry/registry.yaml"
-'1  1  5  ~/private-registry/registry.yaml
-|4,49,1,5,1770777436,"~/private-registry/registry.yaml"
-'2  30  5  ~/private-registry/registry.yaml
-|4,50,30,5,1770777436,"~/private-registry/registry.yaml"
-'3  43  0  ~/private-registry/registry-ui.yaml
-|4,51,43,0,1770777317,"~/private-registry/registry-ui.yaml"
-'4  1  73  ~/private-registry/registry-ui.yaml
-|4,52,1,73,1770776971,"~/private-registry/registry-ui.yaml"
-'5  25  73  ~/private-registry/registry-ui.yaml
-|4,53,25,73,1770776971,"~/private-registry/registry-ui.yaml"
-'6  15  73  /etc/hosts
-|4,54,15,73,1770776827,"/etc/hosts"
-'7  15  55  /etc/hosts
-|4,55,15,55,1770776772,"/etc/hosts"
-'8  2  78  /etc/docker/daemon.json
-|4,56,2,78,1770776632,"/etc/docker/daemon.json"
-'9  1  0  ~/private-registry/registry-ui.yaml
-|4,57,1,0,1770776310,"~/private-registry/registry-ui.yaml"
+'0  8  15  ~/.gitignore
+|4,48,8,15,1770777845,"~/.gitignore"
+'1  42  0  ~/private-registry/registry.yaml
+|4,49,42,0,1770777493,"~/private-registry/registry.yaml"
+'2  1  5  ~/private-registry/registry.yaml
+|4,50,1,5,1770777436,"~/private-registry/registry.yaml"
+'3  30  5  ~/private-registry/registry.yaml
+|4,51,30,5,1770777436,"~/private-registry/registry.yaml"
+'4  43  0  ~/private-registry/registry-ui.yaml
+|4,52,43,0,1770777317,"~/private-registry/registry-ui.yaml"
+'5  1  73  ~/private-registry/registry-ui.yaml
+|4,53,1,73,1770776971,"~/private-registry/registry-ui.yaml"
+'6  25  73  ~/private-registry/registry-ui.yaml
+|4,54,25,73,1770776971,"~/private-registry/registry-ui.yaml"
+'7  15  73  /etc/hosts
+|4,55,15,73,1770776827,"/etc/hosts"
+'8  15  55  /etc/hosts
+|4,56,15,55,1770776772,"/etc/hosts"
+'9  2  78  /etc/docker/daemon.json
+|4,57,2,78,1770776632,"/etc/docker/daemon.json"
 
 # Jumplist (newest first):
+-'  8  15  ~/.gitignore
+|4,39,8,15,1770777845,"~/.gitignore"
+-'  7  4  ~/.gitignore
+|4,39,7,4,1770777839,"~/.gitignore"
+-'  42  0  ~/private-registry/registry.yaml
+|4,39,42,0,1770777493,"~/private-registry/registry.yaml"
 -'  42  0  ~/private-registry/registry.yaml
 |4,39,42,0,1770777493,"~/private-registry/registry.yaml"
 -'  1  0  ~/private-registry/registry.yaml
 |4,39,1,0,1770777480,"~/private-registry/registry.yaml"
+-'  1  0  ~/private-registry/registry.yaml
+|4,39,1,0,1770777480,"~/private-registry/registry.yaml"
 -'  30  5  ~/private-registry/registry.yaml
 |4,39,30,5,1770777436,"~/private-registry/registry.yaml"
+-'  30  5  ~/private-registry/registry.yaml
+|4,39,30,5,1770777436,"~/private-registry/registry.yaml"
+-'  28  0  ~/private-registry/registry.yaml
+|4,39,28,0,1770777407,"~/private-registry/registry.yaml"
 -'  28  0  ~/private-registry/registry.yaml
 |4,39,28,0,1770777407,"~/private-registry/registry.yaml"
 -'  43  0  ~/private-registry/registry-ui.yaml
@@ -162,6 +176,22 @@
 |4,39,43,0,1770777317,"~/private-registry/registry-ui.yaml"
 -'  43  0  ~/private-registry/registry-ui.yaml
 |4,39,43,0,1770777317,"~/private-registry/registry-ui.yaml"
+-'  43  0  ~/private-registry/registry-ui.yaml
+|4,39,43,0,1770777317,"~/private-registry/registry-ui.yaml"
+-'  43  0  ~/private-registry/registry-ui.yaml
+|4,39,43,0,1770777317,"~/private-registry/registry-ui.yaml"
+-'  43  0  ~/private-registry/registry-ui.yaml
+|4,39,43,0,1770777317,"~/private-registry/registry-ui.yaml"
+-'  43  0  ~/private-registry/registry-ui.yaml
+|4,39,43,0,1770777317,"~/private-registry/registry-ui.yaml"
+-'  1  18  ~/private-registry/registry-ui.yaml
+|4,39,1,18,1770777309,"~/private-registry/registry-ui.yaml"
+-'  1  18  ~/private-registry/registry-ui.yaml
+|4,39,1,18,1770777309,"~/private-registry/registry-ui.yaml"
+-'  1  18  ~/private-registry/registry-ui.yaml
+|4,39,1,18,1770777309,"~/private-registry/registry-ui.yaml"
+-'  1  18  ~/private-registry/registry-ui.yaml
+|4,39,1,18,1770777309,"~/private-registry/registry-ui.yaml"
 -'  1  18  ~/private-registry/registry-ui.yaml
 |4,39,1,18,1770777309,"~/private-registry/registry-ui.yaml"
 -'  1  18  ~/private-registry/registry-ui.yaml
@@ -178,6 +208,22 @@
 |4,39,25,73,1770776971,"~/private-registry/registry-ui.yaml"
 -'  25  73  ~/private-registry/registry-ui.yaml
 |4,39,25,73,1770776971,"~/private-registry/registry-ui.yaml"
+-'  25  73  ~/private-registry/registry-ui.yaml
+|4,39,25,73,1770776971,"~/private-registry/registry-ui.yaml"
+-'  25  73  ~/private-registry/registry-ui.yaml
+|4,39,25,73,1770776971,"~/private-registry/registry-ui.yaml"
+-'  25  73  ~/private-registry/registry-ui.yaml
+|4,39,25,73,1770776971,"~/private-registry/registry-ui.yaml"
+-'  25  73  ~/private-registry/registry-ui.yaml
+|4,39,25,73,1770776971,"~/private-registry/registry-ui.yaml"
+-'  42  0  ~/private-registry/registry-ui.yaml
+|4,39,42,0,1770776894,"~/private-registry/registry-ui.yaml"
+-'  42  0  ~/private-registry/registry-ui.yaml
+|4,39,42,0,1770776894,"~/private-registry/registry-ui.yaml"
+-'  42  0  ~/private-registry/registry-ui.yaml
+|4,39,42,0,1770776894,"~/private-registry/registry-ui.yaml"
+-'  42  0  ~/private-registry/registry-ui.yaml
+|4,39,42,0,1770776894,"~/private-registry/registry-ui.yaml"
 -'  42  0  ~/private-registry/registry-ui.yaml
 |4,39,42,0,1770776894,"~/private-registry/registry-ui.yaml"
 -'  42  0  ~/private-registry/registry-ui.yaml
@@ -218,6 +264,38 @@
 |4,39,15,73,1770776827,"/etc/hosts"
 -'  15  73  /etc/hosts
 |4,39,15,73,1770776827,"/etc/hosts"
+-'  15  73  /etc/hosts
+|4,39,15,73,1770776827,"/etc/hosts"
+-'  15  73  /etc/hosts
+|4,39,15,73,1770776827,"/etc/hosts"
+-'  15  73  /etc/hosts
+|4,39,15,73,1770776827,"/etc/hosts"
+-'  15  73  /etc/hosts
+|4,39,15,73,1770776827,"/etc/hosts"
+-'  15  73  /etc/hosts
+|4,39,15,73,1770776827,"/etc/hosts"
+-'  15  73  /etc/hosts
+|4,39,15,73,1770776827,"/etc/hosts"
+-'  15  73  /etc/hosts
+|4,39,15,73,1770776827,"/etc/hosts"
+-'  15  73  /etc/hosts
+|4,39,15,73,1770776827,"/etc/hosts"
+-'  15  73  /etc/hosts
+|4,39,15,73,1770776827,"/etc/hosts"
+-'  15  73  /etc/hosts
+|4,39,15,73,1770776827,"/etc/hosts"
+-'  15  73  /etc/hosts
+|4,39,15,73,1770776827,"/etc/hosts"
+-'  15  73  /etc/hosts
+|4,39,15,73,1770776827,"/etc/hosts"
+-'  15  73  /etc/hosts
+|4,39,15,73,1770776827,"/etc/hosts"
+-'  15  73  /etc/hosts
+|4,39,15,73,1770776827,"/etc/hosts"
+-'  15  73  /etc/hosts
+|4,39,15,73,1770776827,"/etc/hosts"
+-'  15  73  /etc/hosts
+|4,39,15,73,1770776827,"/etc/hosts"
 -'  15  55  /etc/hosts
 |4,39,15,55,1770776772,"/etc/hosts"
 -'  15  55  /etc/hosts
@@ -250,104 +328,41 @@
 |4,39,15,55,1770776772,"/etc/hosts"
 -'  15  55  /etc/hosts
 |4,39,15,55,1770776772,"/etc/hosts"
--'  14  0  /etc/hosts
-|4,39,14,0,1770776761,"/etc/hosts"
--'  14  0  /etc/hosts
-|4,39,14,0,1770776761,"/etc/hosts"
--'  14  0  /etc/hosts
-|4,39,14,0,1770776761,"/etc/hosts"
--'  14  0  /etc/hosts
-|4,39,14,0,1770776761,"/etc/hosts"
--'  14  0  /etc/hosts
-|4,39,14,0,1770776761,"/etc/hosts"
--'  14  0  /etc/hosts
-|4,39,14,0,1770776761,"/etc/hosts"
--'  14  0  /etc/hosts
-|4,39,14,0,1770776761,"/etc/hosts"
--'  14  0  /etc/hosts
-|4,39,14,0,1770776761,"/etc/hosts"
--'  14  0  /etc/hosts
-|4,39,14,0,1770776761,"/etc/hosts"
--'  14  0  /etc/hosts
-|4,39,14,0,1770776761,"/etc/hosts"
--'  14  0  /etc/hosts
-|4,39,14,0,1770776761,"/etc/hosts"
--'  14  0  /etc/hosts
-|4,39,14,0,1770776761,"/etc/hosts"
--'  14  0  /etc/hosts
-|4,39,14,0,1770776761,"/etc/hosts"
--'  14  0  /etc/hosts
-|4,39,14,0,1770776761,"/etc/hosts"
--'  14  0  /etc/hosts
-|4,39,14,0,1770776761,"/etc/hosts"
--'  14  0  /etc/hosts
-|4,39,14,0,1770776761,"/etc/hosts"
--'  14  0  /etc/hosts
-|4,39,14,0,1770776761,"/etc/hosts"
--'  14  0  /etc/hosts
-|4,39,14,0,1770776761,"/etc/hosts"
--'  14  0  /etc/hosts
-|4,39,14,0,1770776761,"/etc/hosts"
--'  14  0  /etc/hosts
-|4,39,14,0,1770776761,"/etc/hosts"
--'  14  0  /etc/hosts
-|4,39,14,0,1770776761,"/etc/hosts"
--'  14  0  /etc/hosts
-|4,39,14,0,1770776761,"/etc/hosts"
--'  14  0  /etc/hosts
-|4,39,14,0,1770776761,"/etc/hosts"
--'  14  0  /etc/hosts
-|4,39,14,0,1770776761,"/etc/hosts"
--'  14  0  /etc/hosts
-|4,39,14,0,1770776761,"/etc/hosts"
--'  14  0  /etc/hosts
-|4,39,14,0,1770776761,"/etc/hosts"
--'  14  0  /etc/hosts
-|4,39,14,0,1770776761,"/etc/hosts"
--'  14  0  /etc/hosts
-|4,39,14,0,1770776761,"/etc/hosts"
--'  14  0  /etc/hosts
-|4,39,14,0,1770776761,"/etc/hosts"
--'  14  0  /etc/hosts
-|4,39,14,0,1770776761,"/etc/hosts"
--'  14  0  /etc/hosts
-|4,39,14,0,1770776761,"/etc/hosts"
--'  14  0  /etc/hosts
-|4,39,14,0,1770776761,"/etc/hosts"
--'  2  78  /etc/docker/daemon.json
-|4,39,2,78,1770776632,"/etc/docker/daemon.json"
--'  2  78  /etc/docker/daemon.json
-|4,39,2,78,1770776632,"/etc/docker/daemon.json"
--'  2  78  /etc/docker/daemon.json
-|4,39,2,78,1770776632,"/etc/docker/daemon.json"
--'  2  78  /etc/docker/daemon.json
-|4,39,2,78,1770776632,"/etc/docker/daemon.json"
--'  2  78  /etc/docker/daemon.json
-|4,39,2,78,1770776632,"/etc/docker/daemon.json"
--'  2  78  /etc/docker/daemon.json
-|4,39,2,78,1770776632,"/etc/docker/daemon.json"
--'  2  78  /etc/docker/daemon.json
-|4,39,2,78,1770776632,"/etc/docker/daemon.json"
--'  2  78  /etc/docker/daemon.json
-|4,39,2,78,1770776632,"/etc/docker/daemon.json"
--'  2  78  /etc/docker/daemon.json
-|4,39,2,78,1770776632,"/etc/docker/daemon.json"
--'  2  78  /etc/docker/daemon.json
-|4,39,2,78,1770776632,"/etc/docker/daemon.json"
--'  2  78  /etc/docker/daemon.json
-|4,39,2,78,1770776632,"/etc/docker/daemon.json"
--'  2  78  /etc/docker/daemon.json
-|4,39,2,78,1770776632,"/etc/docker/daemon.json"
--'  2  78  /etc/docker/daemon.json
-|4,39,2,78,1770776632,"/etc/docker/daemon.json"
--'  2  78  /etc/docker/daemon.json
-|4,39,2,78,1770776632,"/etc/docker/daemon.json"
--'  2  78  /etc/docker/daemon.json
-|4,39,2,78,1770776632,"/etc/docker/daemon.json"
--'  2  78  /etc/docker/daemon.json
-|4,39,2,78,1770776632,"/etc/docker/daemon.json"
+-'  15  55  /etc/hosts
+|4,39,15,55,1770776772,"/etc/hosts"
+-'  15  55  /etc/hosts
+|4,39,15,55,1770776772,"/etc/hosts"
+-'  15  55  /etc/hosts
+|4,39,15,55,1770776772,"/etc/hosts"
+-'  15  55  /etc/hosts
+|4,39,15,55,1770776772,"/etc/hosts"
+-'  15  55  /etc/hosts
+|4,39,15,55,1770776772,"/etc/hosts"
+-'  15  55  /etc/hosts
+|4,39,15,55,1770776772,"/etc/hosts"
+-'  15  55  /etc/hosts
+|4,39,15,55,1770776772,"/etc/hosts"
+-'  15  55  /etc/hosts
+|4,39,15,55,1770776772,"/etc/hosts"
+-'  15  55  /etc/hosts
+|4,39,15,55,1770776772,"/etc/hosts"
+-'  15  55  /etc/hosts
+|4,39,15,55,1770776772,"/etc/hosts"
 
 # History of marks within files (newest to oldest):
+
+> ~/.gitignore
+	*	1770777843	0
+	"	8	15
+	^	7	5
+	.	7	4
+	+	1	8
+	+	2	6
+	+	3	7
+	+	4	7
+	+	5	5
+	+	6	4
+	+	7	4
 
 > ~/private-registry/registry.yaml
 	*	1770777489	0
@@ -401,19 +416,6 @@
 	^	13	0
 	.	12	19
 	+	12	19
-
-> ~/.gitignore
-	*	1770775499	0
-	"	7	4
-	^	7	5
-	.	7	4
-	+	1	8
-	+	2	6
-	+	3	7
-	+	4	7
-	+	5	5
-	+	6	4
-	+	7	4
 
 > /tmp/kubectl-edit-872372977.yaml
 	*	1770621693	0
