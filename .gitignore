@@ -5,3 +5,4 @@
 .kube/
 .ssh/
 snap/
+.git-credentials
