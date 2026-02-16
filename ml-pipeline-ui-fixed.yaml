@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ml-pipeline-ui-artifact-manual
+  namespace: kubeflow-user-example-com
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ml-pipeline-ui-artifact-manual
+  template:
+    metadata:
+      labels:
+        app: ml-pipeline-ui-artifact-manual
+    spec:
+      containers:
+      - name: ml-pipeline-ui-artifact
+        image: ghcr.io/kubeflow/kfp-frontend:2.15.0
+        ports:
+        - containerPort: 3000
+        env:
+        - name: MINIO_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: mlpipeline-minio-artifact
+              key: accesskey
+        - name: MINIO_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: mlpipeline-minio-artifact
+              key: secretkey

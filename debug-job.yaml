@@ -1,0 +1,30 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: mnist-debug
+  namespace: kubeflow-user-example-com
+spec:
+  backoffLimit: 1
+  template:
+    metadata:
+      annotations:
+        sidecar.istio.io/inject: "false"
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: training-container
+          image: docker.io/kubeflowkatib/pytorch-mnist-cpu:v0.17.0
+          command:
+            - "sh"
+            - "-c"
+            - |
+              python3 /opt/pytorch-mnist/mnist.py \
+                --epochs=1 \
+                --batch-size=64 \
+                --lr=0.02 \
+                --momentum=0.8
+
+              echo "loss=0.3" > /tmp/metrics.log
+
+              sleep 600
+
