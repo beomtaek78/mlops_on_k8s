@@ -1,0 +1,57 @@
+# PIPELINE DEFINITION
+# Name: mnist-custom-pipeline
+# Inputs:
+#    batch_size: int [Default: 64.0]
+#    lr: float [Default: 0.01]
+components:
+  comp-mnist-training-op:
+    executorLabel: exec-mnist-training-op
+    inputDefinitions:
+      parameters:
+        batch_size:
+          parameterType: NUMBER_INTEGER
+        lr:
+          parameterType: NUMBER_DOUBLE
+deploymentSpec:
+  executors:
+    exec-mnist-training-op:
+      container:
+        args:
+        - --lr
+        - '{{$.inputs.parameters[''lr'']}}'
+        - --batch-size
+        - '{{$.inputs.parameters[''batch_size'']}}'
+        command:
+        - python
+        - /opt/mnist.py
+        image: 172.16.8.202:30000/custom-mnist:v1
+pipelineInfo:
+  name: mnist-custom-pipeline
+root:
+  dag:
+    tasks:
+      mnist-training-op:
+        cachingOptions:
+          enableCache: true
+        componentRef:
+          name: comp-mnist-training-op
+        inputs:
+          parameters:
+            batch_size:
+              componentInputParameter: batch_size
+            lr:
+              componentInputParameter: lr
+        taskInfo:
+          name: mnist-training-op
+  inputDefinitions:
+    parameters:
+      batch_size:
+        defaultValue: 64.0
+        isOptional: true
+        parameterType: NUMBER_INTEGER
+      lr:
+        defaultValue: 0.01
+        isOptional: true
+        parameterType: NUMBER_DOUBLE
+schemaVersion: 2.1.0
+sdkVersion: kfp-2.7.0

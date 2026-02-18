@@ -1,0 +1,24 @@
+apiVersion: serving.kserve.io/v1beta1
+kind: InferenceService
+metadata:
+  name: custom-model
+  namespace: kubeflow-user-example-com
+  annotations:
+    autoscaling.knative.dev/min-scale: "0"
+    autoscaling.knative.dev/max-scale: "3"
+spec:
+  predictor:
+    containers:
+      - name: kserve-container
+        image: 172.16.8.202:30000/custom-model:v1
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 8080
+        resources:
+          requests:
+            cpu: 50m
+            memory: 64Mi
+          limits:
+            cpu: 200m
+            memory: 128Mi
+
